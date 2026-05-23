@@ -1,0 +1,56 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://echo.example/vex/nginx-1.25.5-1+echo1-2026-05-23",
+  "author": "Echo Build <echo@build.local>",
+  "role": "Vendor",
+  "timestamp": "2026-05-23T11:20:50Z",
+  "version": 1,
+  "tooling": "Hand-authored from baseline scanner output",
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2026-42946",
+        "description": "nginx: excessive memory allocation / over-read in ngx_http_scgi_module and ngx_http_uwsgi_module on malformed status line."
+      },
+      "products": [
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=arm64&distro=debian-12"
+        },
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=arm64&distro=debian-12.14"
+        },
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=amd64&distro=debian-12"
+        },
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=amd64&distro=debian-12.14"
+        }
+      ],
+      "status": "fixed",
+      "action_statement": "Backported upstream commits baef7fdac28e4e1fe26509b50b8d15603393e28e and 39d7d0ba0799fcff6baee52b6525f45739593cfd (nginx 1.30.1) onto the 1.25.5 source we ship. See build/patches/CVE-2026-42946.patch."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2023-44487",
+        "description": "HTTP/2 Rapid Reset attack."
+      },
+      "products": [
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=arm64&distro=debian-12"
+        },
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=arm64&distro=debian-12.14"
+        },
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=amd64&distro=debian-12"
+        },
+        {
+          "@id": "pkg:deb/debian/nginx@1.25.5-1%2Becho1?arch=amd64&distro=debian-12.14"
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_present",
+      "impact_statement": "The HTTP/2 Rapid Reset fix landed upstream in nginx 1.25.3 (October 2023). We ship 1.25.5 source which contains the fix; the scanner false-positive is a stale-DB artifact."
+    }
+  ]
+}
