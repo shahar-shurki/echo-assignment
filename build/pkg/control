@@ -1,0 +1,18 @@
+Package: nginx
+Version: __VERSION__
+Architecture: __ARCH__
+Maintainer: Echo Build <echo@build.local>
+Section: httpd
+Priority: optional
+Homepage: https://nginx.org/
+Depends: libc6, libcrypt1, libpcre2-8-0, libssl3 (>= 3.0.15-1~deb12u1), zlib1g, adduser
+Description: high performance web server (Echo rebuild)
+ Drop-in replacement for nginx 1.25.5-1~bookworm rebuilt from upstream
+ source with security backports applied. See /usr/share/doc/nginx/README.
+ .
+ Backports applied:
+   * CVE-2026-42946 (scgi/uwsgi status-line parsing) - upstream 1.30.1
+ .
+ Version-bump floors:
+   * libssl3 (>= 3.0.15-1~deb12u1) - closes CVE-2024-5535 and ~9 other
+     openssl CVEs flagged against 3.0.11-1~deb12u2 in the baseline.

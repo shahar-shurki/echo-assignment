@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+
+# Create nginx user/group with the same uid/gid as the upstream image (101).
+if ! getent group nginx >/dev/null 2>&1; then
+    addgroup --system --gid 101 nginx
+fi
+if ! getent passwd nginx >/dev/null 2>&1; then
+    adduser --system --disabled-login --ingroup nginx --no-create-home \
+            --home /nonexistent --gecos "nginx user" --shell /bin/false --uid 101 nginx
+fi
+
+# Ensure runtime directories exist with the right ownership.
+install -d -o nginx -g nginx -m 0755 /var/cache/nginx /var/log/nginx
+
+exit 0
